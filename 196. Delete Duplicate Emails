@@ -1,0 +1,11 @@
+DELETE FROM person 
+WHERE id IN (
+    SELECT id 
+    FROM (
+        SELECT id, ROW_NUMBER() OVER (
+            PARTITION BY email ORDER BY id
+        ) as row_num 
+        FROM person
+    ) t 
+    WHERE t.row_num > 1
+);
