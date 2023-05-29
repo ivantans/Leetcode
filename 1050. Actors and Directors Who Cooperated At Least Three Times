@@ -1,7 +1,7 @@
-Select 
+SELECT 
   actor_id,
   director_id, 
   timestamp
-From ActorDirector
+FROM ActorDirector
 GROUP BY actor_id,director_id
 HAVING COUNT(timestamp)>=3;
